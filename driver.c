@@ -124,7 +124,7 @@ int main(){
   printf(" Testing Shuffle \n");
   shuffle_library();
   clear_library();
-  printf("clearing library\n\n");
+  printf("\nclearing library and adding one more song\n\n");
   add_song("one final song","dwai");
   print_library();
 
