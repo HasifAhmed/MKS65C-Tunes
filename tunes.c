@@ -13,6 +13,28 @@ int indexOf(char * artist){
 }
 void add_song(char * name,char *artist){
   int i=indexOf(artist);
-  struct song_node * song = make_song(name,artist);
+  lib[i]=insert_order(lib[i],name,artist);
+}
 
+
+void print_library(){
+  int num=0;
+  for(;num<27;num++){
+    if(lib[num]){
+    printf("Artists:%c",num+65);
+    print_list(lib[num]);
+  }
+  }
+}
+struct song_node * find_song(char * artist, char * name){
+  int index = indexOf(artist);
+  return find_node( lib[index],name, artist);
+}
+struct song_node * find_artist(char *a){
+  int index = indexOf(a);
+  struct song_node * first = find_first(lib[index],a);
+  while(strcmp(first->artist,a)){
+    print_node(first);
+    first = first -> next;
+  }
 }
