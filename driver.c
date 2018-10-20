@@ -15,6 +15,7 @@ int main(){
 
   printf("\n=================================================\n");
   first = insert_order(first,"Hello","Hasif");
+  //print_node(first);
   printf("Song Added. Current Song Directory:\n");
   print_list(first);
 
@@ -74,8 +75,27 @@ int main(){
   print_list(rm2);
   printf("\n=================================================\n");
 
-
+  printf("Testing add song and print_library\n");
   free_list(first);
+  add_song("Song1","Adil");
+  add_song("Song2","Adil");
+  add_song("Song1","Hasif");
+  add_song("Song2","Hasif");
+  add_song("Stairway To Heaven","Zeppelin");
+  add_song("Sing Song","#123");
+  print_library();
+  printf("  Testing find: \n");
+  printf("looking for [Zeppelin: Stairway To Heaven]\n");
+  //struct song_node * found = find_song("Zeppelin","Stairway To Heaven");
+  //printf("%s",found->name);
+  print_node(find_song("Zeppelin","Stairway To Heaven"));
+  printf("looking for [Zeppelin: Sing Song]\n");
+  print_node(find_song("Zeppelin","Sing Song"));
+
+
+
+
+
 
 
 

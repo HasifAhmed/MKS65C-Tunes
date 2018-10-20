@@ -23,11 +23,21 @@ struct song_node * insert_back(struct song_node *p, struct song_node *new){
   iter -> next = new;
   return p;
 }
+void print_node(struct song_node *p){
+  if(p){
+    printf("node found ");
+    //printf("%s",p->artist);
+    printf("|%s: %s| \n", p->artist, p->name);
+  }
+  else{
+    printf("node not found\n");
+  }
+}
 
 void print_list(struct song_node *p){
   printf("\n=====================================\n");
 	while(p){
-		printf("|%s: %s| ", p->name, p->artist);
+		printf("|%s: %s| ", p->artist, p->name);
 		p=p->next;
 	}
   printf("\n=====================================\n");
@@ -87,6 +97,7 @@ struct song_node* find_node(struct song_node *p, char *n, char *a){
     }
     p = p->next;
   }
+  return NULL;
 }
 
 struct song_node * find_first(struct song_node *p, char *a){
@@ -96,10 +107,11 @@ struct song_node * find_first(struct song_node *p, char *a){
     }
     p = p->next;
   }
+  return NULL;
 }
 
 struct song_node * rand_node(struct song_node *p){
-  
+
   struct song_node *iter = malloc(sizeof(struct song_node));
   iter = p;
   int cnt = 0;
