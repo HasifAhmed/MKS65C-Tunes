@@ -50,7 +50,7 @@ void clear_library(){
   int num=0;
   for(;num<27;num++){
     if(lib[num]){
-    lib[num]=free_list(lib[num]);
+     lib[num]=free_list(lib[num]);
     }
   }
 }
@@ -71,5 +71,5 @@ void shuffle_library(){
 
 void  delete_song(char *name, char *artist){
     int index =indexOf(artist);
-    remove_node(lib[index], find_song(name,artist));
+    lib[index]=remove_node(lib[index], name,artist);
 }

@@ -36,6 +36,9 @@ void print_node(struct song_node *p){
 
 void print_list(struct song_node *p){
   printf("\n=====================================\n");
+  if(p == NULL){
+    return;
+  }
 	while(p){
 		printf("|%s: %s| ", p->artist, p->name);
 		p=p->next;
@@ -51,15 +54,6 @@ struct song_node * insert_front(struct song_node *p, char *song, char *a){
 	new->next = p;
 	return new;
 }
-
-/*struct song_node * free_list(struct song_node *p){
-	while(p){
-		struct song_node *tmp = p->next;
-		free(p);
-		p = tmp;
-	}
-	return NULL;
-}*/
 
 struct song_node * free_list(struct song_node * p){
   struct song_node *curP = p;
@@ -136,26 +130,22 @@ struct song_node * rand_node(struct song_node *p){
   return p;
 }
 
-struct song_node * remove_node(struct song_node *p, struct song_node *rem){
-  struct song_node *iter = malloc(sizeof(struct song_node));
-  iter = p;
 
-  struct song_node *bef = malloc(sizeof(struct song_node));
-  bef = p;
-
-  if(p == rem){
-    p = rem->next;
-    return p;
-  }
-
-  iter = iter->next;
-  while(iter){
-    if(iter == rem){
-      bef->next = rem->next;
-      return p;
+struct song_node * remove_node(struct song_node *p,char* n, char * a){
+  struct song_node * curP = p;
+  struct song_node * prevP = p;
+  if (strcmp(n,curP->name)==0 && strcmp(a,curP->artist)==0)
+    {
+        p = curP->next;  // *p = p->next;
+        free(curP);
+        return p;
     }
-    bef = iter;
-    iter = iter->next;
-  }
-  return p;
+    while (curP != NULL && curP ->next !=NULL && (strcmp(n,curP->name)!=0 || strcmp(a,curP->artist)!=0))
+    {
+        prevP = curP;
+        curP = curP->next;
+    }
+    prevP->next = curP ->next;
+    free(curP);
+    return p;
 }

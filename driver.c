@@ -63,20 +63,23 @@ int main(){
 
   printf("\n=================================================\n");
   printf("Current Song Directory:\n");
-
   print_list(first);
 
   printf("Removing Hello By Hasif...\n");
-  struct song_node *rm1 = remove_node(first,song1);
-  print_list(rm1);
+  first= remove_node(first,"Hello","Hasif");
+  print_list(first);
 
-  printf("Removing Pakistan By Adil...\n");
-  struct song_node *rm2 = remove_node(first,song3);
-  print_list(rm2);
+  printf("Removing Goodbye By Adil...\n");
+  first= remove_node(first,"Goodbye","Adil");
+  print_list(first);
   printf("\n=================================================\n");
 
+  printf(" Freed the List\n");
+  //first = remove_node(first,"Bangladesh","Hasif");
+  first = free_list(first);
+  print_list(first);
+  print_library();
   printf("Testing add song and print_library\n");
-  free_list(first);
   add_song("Song1","Adil");
   add_song("Song2","Adil");
   add_song("Song1","Hasif");
@@ -86,13 +89,16 @@ int main(){
   add_song("Broc","Bamboozle");
   print_library();
 
-  printf(" Testing Remove Node\n");
+  printf(" Testing Remove Song\n");
   printf(" Removing Song Broc by Bamboozle\n\n");
+  //print_list(lib[1]);
+  //lib[1]=remove_node(lib[1],"Broc","Bamboozle");
   delete_song("Broc","Bamboozle");
+  //print_list(lib[1]);
   print_library();
 
   //print_library();
-  /*printf("  Testing find: \n");
+  printf("  Testing find: \n");
   printf("looking for [Zeppelin: Stairway To Heaven]\n");
   //struct song_node * found = find_song("Zeppelin","Stairway To Heaven");
   print_node(find_song("Zeppelin","Stairway To Heaven"));
@@ -108,7 +114,7 @@ int main(){
   find_artist("Kanye");
 
   printf("  Testing print letter A: \n");
-  print_letter("A");d
+  print_letter("A");
   add_song("Broc","Bamboozle");
   add_song("Apple","Khan");
   add_song("Orange","Deangelo");
@@ -116,7 +122,11 @@ int main(){
   add_song("Grape","Vert");
   //print_library();
   printf(" Testing Shuffle \n");
-  shuffle_library();*/
+  shuffle_library();
+  clear_library();
+  printf("clearing library\n\n");
+  add_song("one final song","dwai");
+  print_library();
 
 
 /*
