@@ -25,7 +25,7 @@ struct song_node * insert_back(struct song_node *p, struct song_node *new){
 }
 void print_node(struct song_node *p){
   if(p){
-    printf("node found ");
+    //printf("node found ");
     //printf("%s",p->artist);
     printf("|%s: %s| \n", p->artist, p->name);
   }
@@ -52,13 +52,24 @@ struct song_node * insert_front(struct song_node *p, char *song, char *a){
 	return new;
 }
 
-struct song_node * free_list(struct song_node *p){
+/*struct song_node * free_list(struct song_node *p){
 	while(p){
 		struct song_node *tmp = p->next;
 		free(p);
 		p = tmp;
 	}
 	return NULL;
+}*/
+
+struct song_node * free_list(struct song_node * p){
+  struct song_node *curP = p;
+  struct song_node *tempP = p;
+  while(curP){
+    curP = curP->next;
+    free(tempP);
+    tempP = curP;
+  }
+  return curP;
 }
 
 struct song_node * insert_order(struct song_node *p, char *song, char *a){
@@ -111,7 +122,6 @@ struct song_node * find_first(struct song_node *p, char *a){
 }
 
 struct song_node * rand_node(struct song_node *p){
-
   struct song_node *iter = malloc(sizeof(struct song_node));
   iter = p;
   int cnt = 0;
